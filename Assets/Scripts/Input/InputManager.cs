@@ -294,7 +294,6 @@ public class InputManager : MonoBehaviour
         }
         else if (context.canceled)
         {
-           Debug.Log(context.phase.ToString());
             _rightPressed = false;
         }
     }
