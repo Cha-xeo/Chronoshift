@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Plant1 1
   m_EditorClassIdentifier: 
   elements: 2
-  _name: 
+  _name: ult plant
   _description: 
   _icon: {fileID: 21300000, guid: dab258a4fb7d5bd44a7be0b65d735bc0, type: 3}
   Spell: {fileID: 3562201996630016890, guid: bf24e666bc16f3f4594d13755440aef4, type: 3}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Spells : MonoBehaviour, ISpells
 {
-    [HideInInspector] public Constants.Elements Element;
+    public Constants.Elements Element;
     public virtual void Use() 
     {
         Debug.Log(Element.ToString());

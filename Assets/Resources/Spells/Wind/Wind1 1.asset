@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wind1 1
   m_EditorClassIdentifier: 
   elements: 4
-  _name: 
+  _name: ult wind
   _description: 
   _icon: {fileID: 21300000, guid: adc639974b88f2d418023bc6cc8fb630, type: 3}
   Spell: {fileID: 8474228538100269691, guid: 5df45252738c1bc4896974abefb11d24, type: 3}

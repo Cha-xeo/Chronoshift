@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Earth1 1
   m_EditorClassIdentifier: 
   elements: 0
-  _name: 
+  _name: ult earth
   _description: 
   _icon: {fileID: 21300000, guid: 76ea48f37c4f7f44d99c0875703bd7e9, type: 3}
   Spell: {fileID: 8474228538100269691, guid: 36e9d94b393af9b4eaaaacdbcbf31289, type: 3}

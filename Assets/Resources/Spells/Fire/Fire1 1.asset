@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fire1 1
   m_EditorClassIdentifier: 
   elements: 1
-  _name: 
+  _name: ult fire
   _description: 
   _icon: {fileID: 21300000, guid: d88d2ccb8a54d3645acb9319e076e68c, type: 3}
   Spell: {fileID: 8474228538100269691, guid: 229acb8c8b93e8242a989787a12f9961, type: 3}

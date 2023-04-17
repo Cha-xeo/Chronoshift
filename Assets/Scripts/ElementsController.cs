@@ -18,7 +18,6 @@ public class ElementsController : MonoBehaviour
     [SerializeField] List<Image> _buttons;
     [SerializeField] ChargedElement charged;
 
-    // Start is called before the first frame update
     void Start()
     {
         EarthSpells = Resources.LoadAll<SpellsScriptable>("Spells/Earth").ToList();
@@ -36,6 +35,7 @@ public class ElementsController : MonoBehaviour
             case Constants.Elements.Earth:
                 for (int i = 0; i < EarthSpells.Count(); i++)
                 {
+
                     _buttons[i].sprite = EarthSpells[i]._icon;
                     charged.SpellArray[i] = EarthSpells[i];
 
@@ -44,6 +44,7 @@ public class ElementsController : MonoBehaviour
             case Constants.Elements.Fire:
                 for (int i = 0; i < FireSpells.Count(); i++)
                 {
+                    
                     _buttons[i].sprite = FireSpells[i]._icon;
                     charged.SpellArray[i] = FireSpells[i];
                 }

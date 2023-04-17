@@ -12,9 +12,10 @@ public class SpellsScriptable : ScriptableObject
     public Sprite _icon;
     public GameObject Spell;
 
-    public void UsePrefab()
+    /*public void UsePrefab()
     {
+        Debug.Log("No " + elements.ToString());
         Spell.GetComponent<Spells>().Element = elements;
         Spell.GetComponent<Spells>().Use();
-    }
+    }*/
 }

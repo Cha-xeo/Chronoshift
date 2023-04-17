@@ -424,4 +424,43 @@ public class InputManager : MonoBehaviour
         _reloadPressed = false;
         return result;
     }
+    private bool _spellBPressed = false;
+    public void BButtonPressed(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            _spellBPressed = true;
+        }
+        else if (context.canceled)
+        {
+            _spellBPressed = false;
+        }
+    }
+
+    public bool GetBPressed()
+    {
+        bool result = _spellBPressed;
+        _spellBPressed = false;
+        return result;
+    }
+    private bool _spellAPressed = false;
+    public void AButtonPressed(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            _spellAPressed = true;
+        }
+        else if (context.canceled)
+        {
+            _spellAPressed = false;
+        }
+    }
+
+    public bool GetAPressed()
+    {
+        bool result = _spellAPressed;
+        _spellAPressed = false;
+        return result;
+    }
+
 }

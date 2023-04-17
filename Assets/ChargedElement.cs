@@ -11,11 +11,12 @@ public class ChargedElement : MonoBehaviour
 
     private void Update()
     {
-        if (InputManager.GetInstance().GetFirePressed()) 
+        if (InputManager.GetInstance().GetAPressed()) 
         {
             SpellArray[0].Spell.GetComponent<Spells>().Use();
-        }else if (InputManager.GetInstance().GetLookPressed())
+        }else if (InputManager.GetInstance().GetBPressed())
         {
+            Debug.Log(SpellArray[1].elements);
             SpellArray[1].Spell.GetComponent<Spells>().Use();
         }
     }
