@@ -40,12 +40,12 @@ public class PlayerController : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         transform.Translate(_input.InputVector * 2 * Time.deltaTime);
         _vfx.SetVector3("Sphere pos", transform.position);
-        _tilemap.SetColor(_tilemap.WorldToCell(transform.position), cl ? Color.black : Color.white);
+        //_tilemap.SetColor(_tilemap.WorldToCell(transform.position), cl ? Color.black : Color.white);
     }
 
     private void FixedUpdate()
     {
-        UpdateFog();
+        //UpdateFog();
     }
 
     private void UpdateFog()

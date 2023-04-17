@@ -20,8 +20,8 @@ public class InputHandler : MonoBehaviour
     private void Update()
     {
         Submit = InputManager.GetInstance().GetSubmitPressed();
-        //Up = InputManager.GetInstance().GetUpPressed();
-        //Down = InputManager.GetInstance().GetDownPressed();
+        Up = InputManager.GetInstance().GetUpPressed();
+        Down = InputManager.GetInstance().GetDownPressed();
         InputVector = InputManager.GetInstance().GetMoveDirection();
         // MousePosition = InputManager.GetInstance().GetMousePosition();
         // RawMousePosition = InputManager.GetInstance().GetRawMousePosition();

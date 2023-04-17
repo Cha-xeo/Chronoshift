@@ -381,7 +381,7 @@ public class InputManager : MonoBehaviour
     public bool GetFirePressed()
     {
         bool result = _firePressed;
-        // _firePressed = false;
+        _firePressed = false;
         return result;
     }
 
