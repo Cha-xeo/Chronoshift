@@ -4,49 +4,35 @@ using UnityEngine;
 
 public enum MusicType
 {
-    StartRoom,
-    LevelOne,
-    LevelTwo,
-    LevelThree,
-    LevelFour,
+    MainMenu,
+    InGame1,
+    InGame2,
+    Victory,
+    Defeat,
 }
 
 [RequireComponent(typeof(MusicTemplates))]
 public class MusicHandler : MonoBehaviour
 {
-    private MusicTemplates _musicTemplates;
+    [SerializeField] MusicTemplates _musicTemplates;
+    public static MusicHandler Instance { get; private set; }
 
     private void Awake()
     {
-       _musicTemplates = GetComponent<MusicTemplates>();
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
     }
 
-    public void PlayMusic(MusicType type)
+    public void PlayMusic(int type)
     {
-        var clip = _musicTemplates.GetMusic(type);
-        
+        var clip = _musicTemplates.GetMusic((MusicType)type);
         SoundManager.Instance.StopMusic();
         SoundManager.Instance.PlayMusic(clip);
-    }
-
-    public void PlayMusic(int level)
-    {
-        switch(level)
-        {
-            case 1:
-                PlayMusic(MusicType.LevelOne);
-                break;
-            case 2:
-                PlayMusic(MusicType.LevelTwo);
-                break;
-            case 3:
-                PlayMusic(MusicType.LevelThree);
-                break;
-            case 4:
-                PlayMusic(MusicType.LevelFour);
-                break;
-            default:
-                return;
-        }
     }
 }

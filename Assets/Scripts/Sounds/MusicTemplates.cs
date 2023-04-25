@@ -11,8 +11,7 @@ public class MusicTemplate
 
 public class MusicTemplates : MonoBehaviour
 {
-    [SerializeField]
-    private List<MusicTemplate> _musicTemplates;
+    [SerializeField] List<MusicTemplate> _musicTemplates;
     
     public AudioClip GetMusic(MusicType type)
     {

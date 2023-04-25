@@ -7,13 +7,17 @@ public class MainMenuManager : MonoBehaviour
 {
     //[SerializeField] MusicHandler _musicHandler;
 
+    private void Start()
+    {
+        MusicHandler.Instance.PlayMusic(0);
+    }
     public void Quit()
     {
         #if !UNITY_EDITOR
 			 Application.Quit();
-#endif
+        #endif
 
-#if UNITY_EDITOR
+        #if UNITY_EDITOR
                 UnityEditor.EditorApplication.isPlaying = false;
         #endif
     }
