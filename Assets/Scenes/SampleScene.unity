@@ -327,10 +327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b24a394017f1763459bec65a06d510c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pos_history: []
-  _herald: {fileID: 0}
   TurnsForRewind: 1
-  grandReset: 0
 --- !u!1 &888841299
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,7 +357,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fe154247d915d74ba574dd962e8e002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _units: []
   SelectedChar: {fileID: 0}
 --- !u!4 &888841301
 Transform:
@@ -626,9 +622,6 @@ MonoBehaviour:
   _obstacleTile: {fileID: 1702953344717985442, guid: 34fc7c42f4f82d342bd7f774ee553025, type: 3}
   _camera: {fileID: 519420032}
   scaled: 1.5
-  odd: 1
-  _driftX: 0.759
-  _driftY: 0.569
 --- !u!4 &1930171585
 Transform:
   m_ObjectHideFlags: 0

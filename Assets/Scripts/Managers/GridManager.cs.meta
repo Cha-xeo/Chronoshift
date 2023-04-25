@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: f1b7631786e1a304bb6ace33adca4079
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _tileDefault: {instanceID: 0}
+  - _obstacleTile: {instanceID: 0}
+  - _camera: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
