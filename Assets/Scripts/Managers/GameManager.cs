@@ -1,3 +1,5 @@
+using Chronoshift.AplicationController;
+using Photon.Pun;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,6 +9,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public GameState _state;
+    bool ntm = false;
 
     public static event Action<GameState> OnGameStateChanged;
 
@@ -14,8 +17,16 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
-    private void Start () {
-        ChangeState(GameState.GenerateGrid);
+    private void Start ()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            ChangeState(GameState.GenerateGrid);
+        }
+        else
+        {
+            ChangeState(GameState.SpawnChar);
+        }
     }
 
     public void ChangeState(GameState newState) {

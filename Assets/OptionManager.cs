@@ -11,41 +11,41 @@ public class OptionManager : MonoBehaviour
     // Sounds volume
     public void SoundVolume(float volume)
     {
-        _tmp = SoundManager.Instance.GetEffectsVolume() + volume;
+        _tmp = Chronoshift.Audio.SoundManagerv2.Instance.GetEffectsVolume() + volume;
         if (_tmp <= 0 || _tmp >= 1) return;
-        SoundManager.Instance.ChangeEffectsVolume(_tmp);
+        Chronoshift.Audio.SoundManagerv2.Instance.ChangeEffectsVolume(_tmp);
     }
     public void MuteSoundVolume()
     {
-        SoundManager.Instance.ChangeEffectsVolume(0);
+        Chronoshift.Audio.SoundManagerv2.Instance.ChangeEffectsVolume(0);
     }
 
     //Music volume
     public void MusicVolume(float volume)
     {
-        _tmp = SoundManager.Instance.GetMusicVolume() + volume;
+        _tmp = Chronoshift.Audio.SoundManagerv2.Instance.GetMusicVolume() + volume;
         if (_tmp <= 0 || _tmp >= 1) return;
-        SoundManager.Instance.ChangeMusicVolume(_tmp);
+        Chronoshift.Audio.SoundManagerv2.Instance.ChangeMusicVolume(_tmp);
     }
     public void MuteMusicVolume()
     {
-        SoundManager.Instance.ChangeMusicVolume(0);
+        Chronoshift.Audio.SoundManagerv2.Instance.ChangeMusicVolume(0);
     }
 
     //Master volume
     public void MasterVolume(float volume)
     {
-        _tmp = SoundManager.Instance.GetMasterVolume() + volume;
+        _tmp = Chronoshift.Audio.SoundManagerv2.Instance.GetMasterVolume() + volume;
         if (_tmp <= 0 || _tmp >= 1) return;
-        SoundManager.Instance.ChangeMasterVolume(_tmp);
+        Chronoshift.Audio.SoundManagerv2.Instance.ChangeMasterVolume(_tmp);
     }
     public void MuteMasterVolume()
     {
-        SoundManager.Instance.ChangeMasterVolume(0);
+        Chronoshift.Audio.SoundManagerv2.Instance.ChangeMasterVolume(0);
     }
 
     public void MenuClick()
     {
-        SoundManager.Instance.PlaySound(_clickSoundEffect);
+        Chronoshift.Audio.SoundManagerv2.Instance.PlaySound(_clickSoundEffect);
     }
 }

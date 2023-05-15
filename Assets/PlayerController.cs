@@ -1,11 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Experimental.VFX;
-using UnityEngine.VFX;
 using UnityEngine.Tilemaps;
-using Unity.VisualScripting;
 using Unity.Netcode;
 
 public class PlayerController : NetworkBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
