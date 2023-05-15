@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObstacleTile : Tile
+public class WaterTile : Tile
 {
-    // must block the enemy
-    // auto destroy after x round
+
+    // when the player walks on he lose more moving points
+
+    // private Animation anim;
 
     bool roundEnd = false;
     int health = 3;
@@ -18,5 +20,9 @@ public class ObstacleTile : Tile
 
     void TakeDamages() {
         health--;
+        if (health == 0) {
+            // anim.Play("destroyed");
+            // Destroy(GameObject);
+        }
     }
 }
