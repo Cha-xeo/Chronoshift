@@ -1,53 +1,49 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
+using Photon.Pun;
 
 public class UnitManager : MonoBehaviour
 {
-    public static UnitManager Instance;
+    public static UnitManager Instance { get; private set; }
 
-    private List<ScriptableUnit> _units;
-
+    //private List<ScriptableUnit> _units;
+    [SerializeField] GameObject _playerPrefab;
+    [SerializeField] Transform _playerParent;
+    public GameObject _player;
+    [SerializeField] PhotonView _view;
     public BaseChar SelectedChar;
-    
-    void Awake() {
-        Instance = this;
 
-        _units = Resources.LoadAll<ScriptableUnit>("Units").ToList();
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
-    public void SpawnCharacter() {
-        var charCount = 1;
-
-        for (int i = 0; i < charCount; i++) {
-            var randomPrefab = GetRandomUnit<BaseChar>(Faction.Character);
-            var spawnedChar = Instantiate(randomPrefab);
-            var randomSpawnTile = GridManager.Instance.GetCharSpawnTile();
-
-            randomSpawnTile.SetUnit(spawnedChar);
-        }
-
+    public void SpawnCharacter()
+    {
+        /*var randomPrefab = GetRandomUnit<BaseChar>(Faction.Character);
+        var spawnedChar = Instantiate(randomPrefab);*/
+        _player = PhotonNetwork.Instantiate(_playerPrefab.name, Vector3.zero, Quaternion.identity);
+        
+        _player.transform.parent = _playerParent;
+        Tile randomSpawnTile = GridManager.Instance.GetCharSpawnTile();
+        randomSpawnTile.SetUnit(_player.GetComponent<BaseUnit>());
+        //if (PhotonNetwork.IsMasterClient)
+          //  _view.RPC("RPC_AskForSpawn", RpcTarget.All);
         GameManager.Instance.ChangeState(GameState.CharTurn);
     }
-
-    // public void SpawnEnemies() {
-    //     var enemyCount = 1;
-
-    //     for (int i = 0; i < charCount; i++) {
-    //         var randomPrefab = GetRandomUnit<BaseEnemy>(Faction.Enemy);
-    //         var spawnedEnemy = Instantiate(randomPrefab);
-    //         var randomSpawnTile = GridManager.Instance.GetEnemySpawnTile();
-
-    //         randomSpawnTile.SetUnit(spawnedEnemy);
-    //     }
-
-    //    GameManager.Instance.ChangeState(GameState.CharTurn);
-    // }
-
-    private T GetRandomUnit<T>(Faction faction) where T : BaseUnit {
-        return (T)_units.Where(u=>u.Faction == faction).OrderBy(o=>Random.value).First().UnitPrefab;
+    [PunRPC]
+    public void RPC_AskForSpawn()
+    {
     }
+    /*private T GetRandomUnit<T>(Faction faction) where T : BaseUnit {
+        return (T)_units.Where(u=>u.Faction == faction).OrderBy(o=>Random.value).First().UnitPrefab;
+    }*/
 
     public void SetSelectedChar(BaseChar charac) {
         SelectedChar = charac;

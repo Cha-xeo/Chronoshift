@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/map1.unity
-    guid: 4e42ccc653dea3e4fa9e3def2a7c0e65
+    path: Assets/Scenes/NoMoreBSIILeRetour/PhotonLoadingScene.unity
+    guid: ac018b6d7692f24438c31d7203f995e0
+  - enabled: 1
+    path: Assets/Scenes/NoMoreBSIILeRetour/PhotonLobbyScene.unity
+    guid: 1312dce3f5d0c4d4aa5f224d07b00d0c
+  - enabled: 1
+    path: Assets/Scenes/NoMoreBSIILeRetour/PhotonWaitingRoomScene.unity
+    guid: 68d070aab02c2cc4a92265b53cf8d3a2
+  - enabled: 1
+    path: Assets/Scenes/NoMoreBSIILeRetour/Game.unity
+    guid: 49863f53a3b43dd40a7d2f47dfce2423
   m_configObjects: {}

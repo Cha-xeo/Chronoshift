@@ -5,12 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
-    //[SerializeField] MusicHandler _musicHandler;
-
-    private void Start()
-    {
-        MusicHandler.Instance.PlayMusic(0);
-    }
     public void Quit()
     {
         #if !UNITY_EDITOR
@@ -21,7 +15,6 @@ public class MainMenuManager : MonoBehaviour
                 UnityEditor.EditorApplication.isPlaying = false;
         #endif
     }
-
     void SceneHandler(string name)
     {
         SceneManager.LoadScene(name);
