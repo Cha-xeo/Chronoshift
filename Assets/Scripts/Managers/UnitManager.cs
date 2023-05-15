@@ -10,6 +10,7 @@ public class UnitManager : MonoBehaviour
     private List<ScriptableUnit> _units;
 
     public BaseChar SelectedChar;
+    public BaseEnemy SelectedEnemy;
     
     void Awake() {
         Instance = this;
@@ -28,22 +29,22 @@ public class UnitManager : MonoBehaviour
             randomSpawnTile.SetUnit(spawnedChar);
         }
 
-        GameManager.Instance.ChangeState(GameState.CharTurn);
+        GameManager.Instance.ChangeState(GameState.SpawnEnemy);
     }
 
-    // public void SpawnEnemies() {
-    //     var enemyCount = 1;
+    public void SpawnEnemies() {
+        var enemyCount = 1;
 
-    //     for (int i = 0; i < charCount; i++) {
-    //         var randomPrefab = GetRandomUnit<BaseEnemy>(Faction.Enemy);
-    //         var spawnedEnemy = Instantiate(randomPrefab);
-    //         var randomSpawnTile = GridManager.Instance.GetEnemySpawnTile();
+        for (int i = 0; i < enemyCount; i++) {
+            var randomPrefab = GetRandomUnit<BaseEnemy>(Faction.Enemy);
+            var spawnedEnemy = Instantiate(randomPrefab);
+            var randomSpawnTile = GridManager.Instance.GetEnemySpawnTile();
 
-    //         randomSpawnTile.SetUnit(spawnedEnemy);
-    //     }
+            randomSpawnTile.SetUnit(spawnedEnemy);
+        }
 
-    //    GameManager.Instance.ChangeState(GameState.CharTurn);
-    // }
+       GameManager.Instance.ChangeState(GameState.CharTurn);
+    }
 
     private T GetRandomUnit<T>(Faction faction) where T : BaseUnit {
         return (T)_units.Where(u=>u.Faction == faction).OrderBy(o=>Random.value).First().UnitPrefab;
@@ -51,5 +52,9 @@ public class UnitManager : MonoBehaviour
 
     public void SetSelectedChar(BaseChar charac) {
         SelectedChar = charac;
+    }
+    
+    public void SetSelectedEnemy(BaseEnemy enemy) {
+        SelectedEnemy = enemy;
     }
 }

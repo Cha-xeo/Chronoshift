@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
                 UnitManager.Instance.SpawnCharacter();
                 break;
             case GameState.SpawnEnemy:
+                UnitManager.Instance.SpawnEnemies();
                 break;
             case GameState.CharTurn:
                 break;

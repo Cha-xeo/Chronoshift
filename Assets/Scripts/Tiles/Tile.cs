@@ -25,24 +25,25 @@ public abstract class Tile : MonoBehaviour
     }
 
     void OnMouseDown() {
-        if(GameManager.Instance._state != GameState.CharTurn)
+        if(GameManager.Instance._state != GameState.CharTurn && GameManager.Instance._state != GameState.EnemyTurn)
             return;
         if (OccupiedUnit != null) {
             if (OccupiedUnit.Faction == Faction.Character) {
                 UnitManager.Instance.SetSelectedChar((BaseChar)OccupiedUnit);
+            } else if (OccupiedUnit.Faction == Faction.Enemy) {
+                UnitManager.Instance.SetSelectedEnemy((BaseEnemy)OccupiedUnit);
             }
             else {
-                if (UnitManager.Instance.SelectedChar != null) {
+                if (UnitManager.Instance.SelectedChar != null || UnitManager.Instance.SelectedEnemy != null) {
                     return;
                 }
             }
         }
         else {
             if (UnitManager.Instance.SelectedChar != null) {
-
+                Debug.Log("Ally selected.");
                 SetUnit(UnitManager.Instance.SelectedChar);
                 UnitManager.Instance.SelectedChar.MPs -= 1;
-                Debug.Log("Current MPs: "+UnitManager.Instance.SelectedChar.MPs);
                 if (UnitManager.Instance.SelectedChar.MPs <= 0) {
                     UnitManager.Instance.SelectedChar.MPs = 4; // PAS FLEXIBLE
                     ChronoManager.Instance.Chronoshift(UnitManager.Instance.SelectedChar.transform.position, UnitManager.Instance.SelectedChar);
@@ -50,9 +51,18 @@ public abstract class Tile : MonoBehaviour
                     GameManager.Instance.ChangeState(GameState.Chronoshift);
                 }
             }
+            if (UnitManager.Instance.SelectedEnemy != null) {
+                Debug.Log("Enemy selected.");
+                SetUnit(UnitManager.Instance.SelectedEnemy);
+                UnitManager.Instance.SelectedEnemy.MPs -= 1;
+                if (UnitManager.Instance.SelectedEnemy.MPs <= 0) {
+                    UnitManager.Instance.SelectedEnemy.MPs = 4; // PAS FLEXIBLE
+                    ChronoManager.Instance.Chronoshift(UnitManager.Instance.SelectedEnemy.transform.position, UnitManager.Instance.SelectedEnemy);
+                    UnitManager.Instance.SetSelectedEnemy(null);
+                    GameManager.Instance.ChangeState(GameState.Chronoshift);
+                }
+            }
         }
-
-
     }
 
     public void SetUnit(BaseUnit unit) {

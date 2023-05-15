@@ -12,9 +12,10 @@ public class GridManager : MonoBehaviour
     [SerializeField] private float scaled = 1;
 
     private Dictionary<Vector2, Tile> _tiles;
-    private bool odd=true;
+    private bool odd=false;
     private float _driftX = 0.759f;
-    private float _driftY = 0.569f;
+    private float _driftY = 0.571f;
+    private float _originY = 0;
 
     void Awake() {
         // GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
@@ -48,12 +49,12 @@ public class GridManager : MonoBehaviour
         // GameManager.Instance.ChangeState(GameState.SpawnChar);
         //-----------------------------------------Code Grille 2d Cubes ^ --------------------------------------------------------------
         _tiles = new Dictionary<Vector2, Tile>();
-            for (float y = 0; y < _height; y += _driftY * scaled, odd = !odd)
+            for (float y = 0; (y) < _height; y += 1, odd = !odd)
             {
-                for (float x = 0; x < _width; x+= _driftX * scaled)
+                for (float x = y; (x) < _width+y; x+= 1)
                 {
-                    var randomTile = Instantiate(Random.Range(0, 6) != 3 ? _tileDefault : _obstacleTile, new Vector3(odd ? x + 0.379f*scaled : x, y), Quaternion.identity);
-                    randomTile.name = $"Tile {x - _driftX*scaled};{y - _driftY*scaled}";
+                    var randomTile = Instantiate(Random.Range(0, 6) != 3 ? _tileDefault : _obstacleTile, new Vector3(odd ? ((x*_driftX)+_driftY)*scaled - _driftY*(_originY) : ((x*_driftX)+_driftY)*scaled - _driftY*y, (y*(_driftY*scaled))), Quaternion.identity);
+                    randomTile.name = $"Tile {x};{y}";
 
                     // randomTile.Init(x,y);
 
@@ -61,6 +62,7 @@ public class GridManager : MonoBehaviour
                     // _spawnedTile.positon = _spawnedTile.transform.position;
                     // _tiles[_spawnedTile.positon] = _spawnedTile;
                 }
+                _originY+=1;
             }
             _camera.transform.position = new Vector3((float)_width/2 - 0.5f,(float)_height/2 - 0.5f, -1);
         
@@ -72,9 +74,9 @@ public class GridManager : MonoBehaviour
         return _tiles.Where(t=>t.Key.x < _width/2 && t.Value.Walkable).OrderBy(t=>Random.value).First().Value;
     }
 
-    // public Tile GetEnemySpawnTile() {
-    //     return _tiles.Where(t=>t.Key.x > _width/2 && t.Value.Walkable).OrderBy(y=>RandomValue).First().Value;
-    // }
+    public Tile GetEnemySpawnTile() {
+        return _tiles.Where(t=>t.Key.x > _width/2 && t.Value.Walkable).OrderBy(t=>Random.value).First().Value;
+    }
 
     public Tile GetTileAtPos(Vector2 pos) {
         if (_tiles.TryGetValue(pos, out var tile)) {
