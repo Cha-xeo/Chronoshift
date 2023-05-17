@@ -1,4 +1,3 @@
-using ExitGames.Client.Photon;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,7 +9,7 @@ namespace Chronoshift.AplicationController
     public enum QuitMode
     {
         ReturnToMenu,
-        ReturnToGameSelection,
+        QuitGame,
         QuitApplication
     }
 
@@ -18,7 +17,6 @@ namespace Chronoshift.AplicationController
     {
         public static AplicationController Instance { get; private set; }
         public bool gameIsPaused;
-        public QuitMode m_QuitMode = QuitMode.ReturnToGameSelection;
 
         void Awake()
         {
@@ -29,22 +27,22 @@ namespace Chronoshift.AplicationController
             else
             {
                 Instance = this;
-
+                
             }
         }
+
+        public QuitMode m_QuitMode = QuitMode.QuitApplication;
+
         // Start is called before the first frame update
         void Start()
         {
             Application.wantsToQuit += OnWantToQuit;
             DontDestroyOnLoad(gameObject);
             Application.targetFrameRate = 120;
-            SceneManager.LoadScene("PhotonLoadingScene");
+            
         }
 
-      /*void RegisterCustomType()
-        {
-            PhotonPeer.RegisterType(typeof(Tile), myCustomTypeCode, Tile.Serialize, Tile.Deserialize);
-        }*/
+
         private bool OnWantToQuit()
         {
             //var canQuit = string.IsNullOrEmpty(m_LocalLobby?.LobbyID);

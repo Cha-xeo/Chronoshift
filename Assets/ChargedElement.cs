@@ -1,23 +1,43 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ChargedElement : MonoBehaviour
 {
+    public static ChargedElement Instance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     public Constants.Elements CurrentElement;
-    [SerializeField] InputHandler _input;
     public List<SpellsScriptable> SpellArray;
+    Spells _holdingSpell;
+    public bool holding;
+    public bool canCast;
+    public Vector2 lastPos;
 
     private void Update()
     {
-        if (InputManager.GetInstance().GetAPressed()) 
+        if (!holding || !canCast) return;
+        if (InputManager.GetInstance().GetLeftMousePressed())
         {
-            SpellArray[0].Spell.GetComponent<Spells>().Use();
-        }else if (InputManager.GetInstance().GetBPressed())
-        {
-            Debug.Log(SpellArray[1].elements);
-            SpellArray[1].Spell.GetComponent<Spells>().Use();
+            _holdingSpell.Use();
+            holding = false;
+            _holdingSpell = null;
         }
+        else if (InputManager.GetInstance().GetRightMousePressed())
+        {
+            holding = false;
+            _holdingSpell = null;
+        }
+    }
+
+    public void HoldSpell(int i)
+    {
+        holding = true;
+        _holdingSpell = SpellArray[i].Spell.GetComponent<Spells>();
     }
 }

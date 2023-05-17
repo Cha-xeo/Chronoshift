@@ -8,22 +8,22 @@ namespace Chronoshift.Gameplay.Audio
         [SerializeField] Slider _musicSlider, _effectSlider, _masterSlider;
         private void OnEnable()
         {
-            _musicSlider.value = Chronoshift.Audio.SoundManagerv2.Instance.GetMusicVolume();
-            _effectSlider.value = Chronoshift.Audio.SoundManagerv2.Instance.GetEffectsVolume();
-            _masterSlider.value = Chronoshift.Audio.SoundManagerv2.Instance.GetMasterVolume();
+            _musicSlider.value = Chronoshift.Audio.SoundManagerV2.Instance.GetMusicVolume();
+            _effectSlider.value = Chronoshift.Audio.SoundManagerV2.Instance.GetEffectsVolume();
+            _masterSlider.value = Chronoshift.Audio.SoundManagerV2.Instance.GetMasterVolume();
         }
 
         public void EffectVolume()
         {
-            Chronoshift.Audio.SoundManagerv2.Instance.ChangeEffectsVolume(_effectSlider.value);
+            Chronoshift.Audio.SoundManagerV2.Instance.ChangeEffectsVolume(_effectSlider.value);
         }
         public void MusicVolume()
         {
-            Chronoshift.Audio.SoundManagerv2.Instance.ChangeMusicVolume(_musicSlider.value);
+            Chronoshift.Audio.SoundManagerV2.Instance.ChangeMusicVolume(_musicSlider.value);
         }
         public void MasterVolume()
         {
-            Chronoshift.Audio.SoundManagerv2.Instance.ChangeMasterVolume(_masterSlider.value);
+            Chronoshift.Audio.SoundManagerV2.Instance.ChangeMasterVolume(_masterSlider.value);
         }
     }
 }

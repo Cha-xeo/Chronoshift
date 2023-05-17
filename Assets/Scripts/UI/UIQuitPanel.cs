@@ -1,29 +1,44 @@
-﻿using Chronoshift.AplicationController;
+using Chronoshift.AplicationController;
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using VContainer;
 
-namespace Chronoshift.Gameplay.UI
+namespace Chronoshift.UI
 {
     public class UIQuitPanel : MonoBehaviour
     {
-        [SerializeField]
-        QuitMode m_QuitMode = QuitMode.ReturnToMenu;
-
-
         public void Quit()
         {
-            switch (m_QuitMode)
+            switch (AplicationController.AplicationController.Instance.m_QuitMode)
             {
                 case QuitMode.ReturnToMenu:
-                    SceneManager.LoadScene("PhotonLobbyScene");
-                    break;
-                case QuitMode.QuitApplication:
+                    Audio.SoundManagerV2.Instance.StopAllSounds();
+#if !UNITY_EDITOR
+			        Application.Quit();
+#endif
+
 #if UNITY_EDITOR
                     UnityEditor.EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
+#endif
+                    break;
+                case QuitMode.QuitGame:
+                    Audio.SoundManagerV2.Instance.StopAllSounds();
+#if !UNITY_EDITOR
+			        Application.Quit();
+#endif
+
+#if UNITY_EDITOR
+                    UnityEditor.EditorApplication.isPlaying = false;
+#endif
+
+                    break;
+                case QuitMode.QuitApplication:
+#if !UNITY_EDITOR
+			        Application.Quit();
+#endif
+
+#if UNITY_EDITOR
+                    UnityEditor.EditorApplication.isPlaying = false;
 #endif
                     break;
                 default:

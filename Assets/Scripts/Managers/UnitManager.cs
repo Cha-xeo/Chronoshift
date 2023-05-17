@@ -32,6 +32,13 @@ public class UnitManager : MonoBehaviour
         GameManager.Instance.ChangeState(GameState.SpawnEnemy);
     }
 
+    public void SpawnUnitAt(BaseChar charr, Vector2 pos) 
+    {
+            BaseChar spawnedChar = Instantiate(charr);
+            Tile tile = GridManager.Instance.GetTileAtPos(pos);
+            tile.SetUnit(spawnedChar);
+    }
+
     public void SpawnEnemies() {
         var enemyCount = 1;
 

@@ -9,6 +9,7 @@ public class GridManager : MonoBehaviour
     [SerializeField] private int _width, _height;
     [SerializeField] private Tile _tileDefault, _obstacleTile;
     [SerializeField] private Transform _camera;
+    [SerializeField] private Transform _world;
     [SerializeField] private float scaled = 1;
 
     private Dictionary<Vector2, Tile> _tiles;
@@ -53,9 +54,15 @@ public class GridManager : MonoBehaviour
             {
                 for (float x = y; (x) < _width+y; x+= 1)
                 {
-                    var randomTile = Instantiate(Random.Range(0, 6) != 3 ? _tileDefault : _obstacleTile, new Vector3(odd ? ((x*_driftX)+_driftY)*scaled - _driftY*(_originY) : ((x*_driftX)+_driftY)*scaled - _driftY*y, (y*(_driftY*scaled))), Quaternion.identity);
+                    var randomTile = Instantiate(Random.Range(0, 6) != 3 ? _tileDefault : _obstacleTile, new Vector3(odd ? (
+                        (x*_driftX) + _driftY) * scaled - _driftY * (_originY) 
+                        : ( (x*_driftX) + _driftY ) * scaled - _driftY * y
+                        , (y*(_driftY*scaled)
+                        )), Quaternion.identity);
                     randomTile.name = $"Tile {x};{y}";
-
+                    randomTile.GetComponent<Tile>().ntmx = x;
+                    randomTile.GetComponent<Tile>().ntmy = y;
+                    randomTile.transform.parent = _world;
                     // randomTile.Init(x,y);
 
                     _tiles[new Vector2(x,y)] = randomTile;
@@ -84,6 +91,20 @@ public class GridManager : MonoBehaviour
         }
 
         return null;
+    }
+
+    public void ChangeTileAt(Vector2 pos, Tile tile)
+    {
+        Tile tilev = Instantiate(tile, _tiles[pos].transform.position, Quaternion.identity);
+        // TODO Don't destroy cache it to restore it later
+        Destroy(_tiles[pos].gameObject);
+
+        tilev.name = $"Tile {pos.x};{pos.y}";
+        tilev.GetComponent<Tile>().ntmx = pos.x;
+        tilev.GetComponent<Tile>().ntmy = pos.y;
+        tilev.transform.parent = _world;
+        _tiles[pos] = tilev;
+
     }
 
     // public Tile GetRandomTile() {

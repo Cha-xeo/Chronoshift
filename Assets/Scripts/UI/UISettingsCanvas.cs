@@ -9,28 +9,50 @@ namespace Chronoshift.Gameplay.UI
 {
     public class UISettingsCanvas : MonoBehaviour
     {
-        [SerializeField] GameObject _SettingPanelRoot;
-        [SerializeField] GameObject _QuitPanelRoot;
+        [SerializeField] GameObject _buttonPanelRoot;
+        [SerializeField] GameObject _panelRoot;
+        [SerializeField] GameObject _audioPanelRoot;
+        [SerializeField] GameObject _quitPanelRoot;
+        bool _state;
 
-        void Awake()
+        private void Update()
         {
-            DisablePanels();
+            if (InputManager.GetInstance().GetEscapePressed())
+            {
+                _state = false;
+                _buttonPanelRoot.SetActive(true);
+                _audioPanelRoot.SetActive(false);
+                _quitPanelRoot.SetActive(false);
+                _panelRoot.SetActive(!_panelRoot.activeSelf);
+            }
         }
 
-        void DisablePanels()
+
+        public void OnClickAudioButton()
         {
-            _SettingPanelRoot.SetActive(false);
-            _QuitPanelRoot.SetActive(false);
-        }
-        public void OnClickSettingsButton()
-        {
-            _SettingPanelRoot.SetActive(!_SettingPanelRoot.activeSelf);
-            _QuitPanelRoot.SetActive(false);
+            _state = true;
+            _buttonPanelRoot.SetActive(false);
+            _audioPanelRoot.SetActive(true);
+
         }
         public void OnClickQuitButton()
         {
-            _QuitPanelRoot.SetActive(!_QuitPanelRoot.activeSelf);
-            _SettingPanelRoot.SetActive(false);
+            _state = true;
+            _buttonPanelRoot.SetActive(false);
+            _quitPanelRoot.SetActive(true);
+        }
+
+        public void OnClickCloseButton() 
+        {
+            if (_state)
+            {
+                _audioPanelRoot.SetActive(false);
+                _quitPanelRoot.SetActive(false);
+                _buttonPanelRoot.SetActive(true);
+                _state = false;
+                return;
+            }
+            _panelRoot.SetActive(false);
         }
     }
 }

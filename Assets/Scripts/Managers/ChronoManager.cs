@@ -21,8 +21,19 @@ public class ChronoManager : MonoBehaviour
             Unit = _unit;
         }
     }
+    public class SpellHistoryManager {
+        public Vector2 Pos_History;
+        public Spells _spell;
+
+        public SpellHistoryManager(Vector3 position, Spells spell) {
+            Pos_History = position;
+            _spell = spell;
+        }
+    }
 
     public List<HistoryManager> historyManager;
+
+    public List<SpellHistoryManager> spellHistoryManager = new();
 
     void Awake() {
         Instance = this;
@@ -61,7 +72,14 @@ public class ChronoManager : MonoBehaviour
         for (int cnt = 0; cnt < historyManager.Count; cnt++) {
             Debug.Log("Unit "+historyManager[cnt].Unit_Id+" saved position "+historyManager[cnt].Pos_History);
             historyManager[cnt].Unit.transform.position = historyManager[cnt].Pos_History;
+
             yield return new WaitForSeconds(1);
+        }
+        foreach (SpellHistoryManager cm in spellHistoryManager)
+        {
+            cm._spell.ChronoUse(cm.Pos_History);
+            yield return new WaitForSeconds(1);
+
         }
     }
 }

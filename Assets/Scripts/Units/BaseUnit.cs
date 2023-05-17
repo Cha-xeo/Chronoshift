@@ -11,5 +11,5 @@ public class BaseUnit : MonoBehaviour
     public Faction Faction;
     public int MPs;
 
-    [SerializeField] PhotonView PhotonView;
+    //[SerializeField] PhotonView PhotonView;
 }

@@ -17,11 +17,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2384657594409162318, guid: d60e14539b73e484781bb67dd2e9c461, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.768
+      value: 1.1428572
       objectReference: {fileID: 0}
     - target: {fileID: 2384657594409162318, guid: d60e14539b73e484781bb67dd2e9c461, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.768
+      value: 1.1428572
       objectReference: {fileID: 0}
     - target: {fileID: 6430335450633995473, guid: d60e14539b73e484781bb67dd2e9c461, type: 3}
       propertyPath: m_RootOrder
@@ -71,17 +71,16 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300012, guid: ac1645b9b895a8c4a9f8d5b744dcf28b, type: 3}
+    - target: {fileID: 6871790761458166531, guid: d60e14539b73e484781bb67dd2e9c461, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 6912291722639703962, guid: d60e14539b73e484781bb67dd2e9c461, type: 3}
       propertyPath: m_Name
       value: PlantTileTurret
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d60e14539b73e484781bb67dd2e9c461, type: 3}
---- !u!1 &1149748004584542533 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2533156705427019628, guid: d60e14539b73e484781bb67dd2e9c461, type: 3}
-  m_PrefabInstance: {fileID: 3229975032291231273}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8304155710817991091 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6912291722639703962, guid: d60e14539b73e484781bb67dd2e9c461, type: 3}
@@ -99,12 +98,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1ff32e5cc923554c8cb3ed70fe4edcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _renderer: {fileID: 8326782322835713322}
-  _highlight: {fileID: 1149748004584542533}
-  _isWalkable: 0
-  OccupiedUnit: {fileID: 0}
---- !u!212 &8326782322835713322 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 6871790761458166531, guid: d60e14539b73e484781bb67dd2e9c461, type: 3}
-  m_PrefabInstance: {fileID: 3229975032291231273}
-  m_PrefabAsset: {fileID: 0}

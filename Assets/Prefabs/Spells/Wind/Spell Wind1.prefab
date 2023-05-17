@@ -74,4 +74,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30327c8cd7611f54291df167c148741f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Element: 4
+  Element: {fileID: 11400000, guid: efb3cfb1e554f8b4ca3e8583c941d33f, type: 2}
+  flag: {fileID: -7041947121001114273, guid: 780a6585ff510094fa7f84a14532f65f, type: 3}
+  _windTile: {fileID: -9011534706949915670, guid: 13efdda94940710469e8263edac9a093, type: 3}

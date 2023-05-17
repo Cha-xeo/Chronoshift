@@ -10,6 +10,7 @@ public class SpellsScriptable : ScriptableObject
     public string _name;
     public string _description;
     public Sprite _icon;
+    public ElemScriptable elem;
     public GameObject Spell;
 
     /*public void UsePrefab()

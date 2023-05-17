@@ -5,9 +5,9 @@ using UnityEngine;
 
 namespace Chronoshift.Audio
 {
-    public class SoundManagerv2 : MonoBehaviour
+    public class SoundManagerV2 : MonoBehaviour
     {
-        public static SoundManagerv2 Instance { get; private set; }
+        public static SoundManagerV2 Instance { get; private set; }
 
         [SerializeField]
         AudioSource _musicSource, _effectsSource;

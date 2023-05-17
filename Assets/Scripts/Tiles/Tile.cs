@@ -9,6 +9,8 @@ public abstract class Tile : MonoBehaviour
     [SerializeField] private GameObject _highlight;
     [SerializeField] private bool _isWalkable;
     private int mpsBefore;
+    public float ntmx;
+    public float ntmy;
 
     public BaseUnit OccupiedUnit;
     public bool Walkable => _isWalkable && OccupiedUnit == null;
@@ -19,6 +21,7 @@ public abstract class Tile : MonoBehaviour
 
     void OnMouseEnter() {
         _highlight.SetActive(true);
+        ChargedElement.Instance.lastPos.Set(ntmx, ntmy);
     }
     void OnMouseExit() {
         _highlight.SetActive(false);
@@ -40,6 +43,7 @@ public abstract class Tile : MonoBehaviour
             }
         }
         else {
+            if (ChargedElement.Instance.holding) return;
             if (UnitManager.Instance.SelectedChar != null) {
                 Debug.Log("Ally selected.");
                 SetUnit(UnitManager.Instance.SelectedChar);

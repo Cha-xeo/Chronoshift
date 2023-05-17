@@ -17,11 +17,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2384657594409162318, guid: d60e14539b73e484781bb67dd2e9c461, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.768
+      value: 1.1428572
       objectReference: {fileID: 0}
     - target: {fileID: 2384657594409162318, guid: d60e14539b73e484781bb67dd2e9c461, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.768
+      value: 1.1428572
       objectReference: {fileID: 0}
     - target: {fileID: 6430335450633995473, guid: d60e14539b73e484781bb67dd2e9c461, type: 3}
       propertyPath: m_RootOrder
@@ -71,6 +71,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300108, guid: ac1645b9b895a8c4a9f8d5b744dcf28b, type: 3}
+    - target: {fileID: 6871790761458166531, guid: d60e14539b73e484781bb67dd2e9c461, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 6912291722639703962, guid: d60e14539b73e484781bb67dd2e9c461, type: 3}
       propertyPath: m_Name
       value: WindTile

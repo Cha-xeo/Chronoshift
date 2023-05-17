@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8754341562741713705}
-  - component: {fileID: 8754341562741713706}
+  - component: {fileID: 2203004458049092523}
   - component: {fileID: 8412260652502811315}
   - component: {fileID: 8412260652502811316}
   m_Layer: 0
@@ -29,12 +29,11 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 404.20084, y: 338.98093, z: -0.105220154}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8754341562741713706
+--- !u!114 &2203004458049092523
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,7 +42,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8754341562741713707}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8e7ac3dd23848c4caaa62219add98d5, type: 3}
+  m_Script: {fileID: 11500000, guid: d56e6c4a6318eb74ebc3769e0f4480fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _musicSource: {fileID: 8412260652502811315}

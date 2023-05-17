@@ -141,21 +141,30 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SpellA",
+                    "name": "AnyKey",
                     "type": "Button",
-                    "id": "83329e3b-5068-4f3d-a952-93adad91567e",
+                    "id": "7b5543d8-e2ae-4712-81c8-12da1d63c8ba",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SpellB",
+                    "name": "Journal",
                     "type": "Button",
-                    "id": "c0d9f828-854f-426e-9e8d-7481be956776",
+                    "id": "10447917-9956-4ec5-b26a-8d61d0657bda",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MouseLeftHold",
+                    "type": "Button",
+                    "id": "01e30618-9a26-4b42-90e5-b4145b33b7b8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold(duration=0.1)",
                     "initialStateCheck": false
                 }
             ],
@@ -353,7 +362,7 @@
                     "path": "<Keyboard>/i",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard&Mouse",
                     "action": "Interaction",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -364,7 +373,7 @@
                     "path": "<Keyboard>/x",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard&Mouse",
                     "action": "Interaction",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -646,23 +655,34 @@
                 },
                 {
                     "name": "",
-                    "id": "66d862a5-8564-4dc9-abd3-d94d922550dc",
-                    "path": "<Keyboard>/q",
+                    "id": "d0e88882-ea91-4188-9a2c-02c1f68d6244",
+                    "path": "<Keyboard>/anyKey",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "SpellA",
+                    "groups": "Keyboard&Mouse",
+                    "action": "AnyKey",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "e5be9f7c-db91-495f-ae1d-959b35dce44d",
-                    "path": "<Keyboard>/e",
+                    "id": "5eb150da-768a-4182-8c6d-e4ea206fd6a6",
+                    "path": "<Keyboard>/j",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "SpellB",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Journal",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "41d6c601-edff-4cf0-871c-adad1ea2c521",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Hold(duration=0.1)",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "MouseLeftHold",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
