@@ -65,16 +65,16 @@ public class ChronoManager : MonoBehaviour
     }
 
     IEnumerator TimeLapse() { //Note : add a lag at the end of the move before rewind
-        // foreach(Vector3 pos in Pos_history) {
-        //     _herald.transform.position = pos;
-            // yield return new WaitForSeconds(1);
-        // }
-        for (int cnt = 0; cnt < historyManager.Count; cnt++) {
-            Debug.Log("Unit "+historyManager[cnt].Unit_Id+" saved position "+historyManager[cnt].Pos_History);
-            historyManager[cnt].Unit.transform.position = historyManager[cnt].Pos_History;
-
+        foreach(Vector3 pos in Pos_history) {
+            _herald.transform.position = pos;
             yield return new WaitForSeconds(1);
         }
+        // for (int cnt = 0; cnt < historyManager.Count; cnt++) {
+        //     Debug.Log("Unit "+historyManager[cnt].Unit_Id+" saved position "+historyManager[cnt].Pos_History);
+        //     historyManager[cnt].Unit.transform.position = historyManager[cnt].Pos_History;
+
+        //     yield return new WaitForSeconds(1);
+        // }
         foreach (SpellHistoryManager cm in spellHistoryManager)
         {
             cm._spell.ChronoUse(cm.Pos_History);

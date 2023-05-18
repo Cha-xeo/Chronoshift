@@ -29,7 +29,8 @@ public class UnitManager : MonoBehaviour
             randomSpawnTile.SetUnit(spawnedChar);
         }
 
-        GameManager.Instance.ChangeState(GameState.SpawnEnemy);
+        // GameManager.Instance.ChangeState(GameState.SpawnEnemy);
+       GameManager.Instance.ChangeState(GameState.CharTurn);
     }
 
     public void SpawnUnitAt(BaseChar charr, Vector2 pos) 

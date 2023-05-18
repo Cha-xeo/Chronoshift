@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
             duration -= Time.deltaTime;
             yield return null;
         }
-        DoStuff();
+        // DoStuff();
     }
 
     public void ChangeState(GameState newState) {
