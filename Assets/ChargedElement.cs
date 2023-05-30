@@ -1,43 +1,56 @@
+using Chronoshift.PlayerController;
+using Photon.Pun;
 using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ChargedElement : MonoBehaviour
+namespace Chronoshift
 {
-    public static ChargedElement Instance { get; private set; }
-
-    private void Awake()
+    public class ChargedElement : MonoBehaviour
     {
-        Instance = this;
-    }
+        public static ChargedElement Instance { get; private set; }
 
-    public Constants.Elements CurrentElement;
-    public List<SpellsScriptable> SpellArray;
-    Spells _holdingSpell;
-    public bool holding;
-    public bool canCast;
-    public Vector2 lastPos;
-
-    private void Update()
-    {
-        if (!holding || !canCast) return;
-        if (InputManager.GetInstance().GetLeftMousePressed())
+        private void Awake()
         {
-            _holdingSpell.Use();
-            holding = false;
-            _holdingSpell = null;
+            Instance = this;
         }
-        else if (InputManager.GetInstance().GetRightMousePressed())
-        {
-            holding = false;
-            _holdingSpell = null;
-        }
-    }
 
-    public void HoldSpell(int i)
-    {
-        holding = true;
-        _holdingSpell = SpellArray[i].Spell.GetComponent<Spells>();
+        public Constants.Elements CurrentElement;
+        public List<SpellsScriptable> SpellArray;
+        [SerializeField] Transform _spellTransform;
+        public GameObject HoldingSpell;
+        //public bool holding;
+        public bool canCast;
+        //public Vector2 lastPos;
+        public int LastTileID;
+
+        private void Update()
+        {
+            //if (!PlayerNController.Instance.PlayerView.IsMine || PlayerNController.Instance.mode != Mode.Casting || !canCast) return;
+            /*if (InputManager.GetInstance().GetLeftMousePressed())
+            {
+                HoldingSpell.GetComponent<Chronoshift.Spells.Spells>().Use();
+                PlayerNController.Instance.mode = Mode.Move;
+                //holding = false;
+                PhotonNetwork.Destroy(HoldingSpell);
+                //_holdingSpell = null;
+                PlayerNController.Instance.mana--;
+            }
+            else */if (PlayerNController.Instance.IsPlaying && PlayerNController.Instance.mode == Mode.Casting && InputManager.GetInstance().GetRightMousePressed())
+            {
+                Debug.Log("Stop Casting");
+                PlayerNController.Instance.mode = Mode.Move;
+                //holding = false;
+                //_holdingSpell = null;
+                PhotonNetwork.Destroy(HoldingSpell);
+            }
+        }
+
+        public void HoldSpell(int i)
+        {
+            PlayerNController.Instance.mode = Mode.Casting;
+            HoldingSpell = PhotonNetwork.Instantiate("Photon/SpellsPrefab/" + SpellArray[i]._name, _spellTransform.position, Quaternion.identity);
+        }
     }
 }

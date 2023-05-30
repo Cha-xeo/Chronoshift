@@ -99,8 +99,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _renderer: {fileID: 902029753196820791}
+  NColor: {r: 1, g: 1, b: 1, a: 0.3882353}
+  CColor: {r: 0.7137255, g: 0, b: 0.972549, a: 0.3882353}
+  MColor: {r: 0.0627451, g: 0.972549, b: 0, a: 0.3882353}
   _highlight: {fileID: 8142141543055557976}
   _isWalkable: 1
+  layer: 0
+  TileId: 0
+  InRange: 0
+  Elements: 3
   OccupiedUnit: {fileID: 0}
 --- !u!212 &902029753196820791 stripped
 SpriteRenderer:

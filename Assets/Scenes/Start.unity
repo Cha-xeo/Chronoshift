@@ -344,6 +344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameIsPaused: 0
+  _start: 1
   m_QuitMode: 1
 --- !u!4 &1486855628
 Transform:

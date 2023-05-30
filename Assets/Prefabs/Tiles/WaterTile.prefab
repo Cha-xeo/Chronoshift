@@ -17,11 +17,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2384657594409162318, guid: d60e14539b73e484781bb67dd2e9c461, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.768
+      value: 1.1428572
       objectReference: {fileID: 0}
     - target: {fileID: 2384657594409162318, guid: d60e14539b73e484781bb67dd2e9c461, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.768
+      value: 1.1428572
       objectReference: {fileID: 0}
     - target: {fileID: 6430335450633995473, guid: d60e14539b73e484781bb67dd2e9c461, type: 3}
       propertyPath: m_RootOrder
@@ -70,7 +70,7 @@ PrefabInstance:
     - target: {fileID: 6871790761458166531, guid: d60e14539b73e484781bb67dd2e9c461, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: da9d6752771285a40a1b383e61336090, type: 3}
+      objectReference: {fileID: -1043909357, guid: 817b049ce82fd5b49940a895e1670317, type: 3}
     - target: {fileID: 6871790761458166531, guid: d60e14539b73e484781bb67dd2e9c461, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -108,8 +108,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _renderer: {fileID: 9142339067591195192}
+  NColor: {r: 1, g: 1, b: 1, a: 0.3882353}
+  CColor: {r: 0.7137255, g: 0, b: 0.972549, a: 0.3882353}
+  MColor: {r: 0.0627451, g: 0.972549, b: 0, a: 0.3882353}
   _highlight: {fileID: 187472374563915351}
   _isWalkable: 1
+  layer: 0
+  TileId: 0
+  InRange: 0
+  Elements: 2
   OccupiedUnit: {fileID: 0}
 --- !u!212 &9142339067591195192 stripped
 SpriteRenderer:

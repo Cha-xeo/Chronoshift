@@ -25,7 +25,7 @@ namespace Photon.Pun.Demo.Procedural
 
         public void Awake()
         {
-            Blocks = new Dictionary<int, GameObject>();
+            Blocks = new Dictionary<int, GameObject>(); 
 
             propertiesValue = new Dictionary<int, float>();
         }

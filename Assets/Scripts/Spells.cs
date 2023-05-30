@@ -1,23 +1,42 @@
-using System.Collections;
-using System.Collections.Generic;
+using Chronoshift.PlayerController;
 using UnityEngine;
-using static ChronoManager;
+using Chronoshift.Tiles;
+using Grid = Chronoshift.Tiles.Grid;
+using Photon.Pun;
 
-public abstract class Spells : MonoBehaviour, ISpells
+
+namespace Chronoshift.Spells
 {
-    public ElemScriptable Element;
-    public BaseChar flag;
-    private void Awake()
+    public abstract class Spells : MonoBehaviour, ISpells
     {
-        Debug.Log("aaa " + Element.name);
-        flag.GetComponent<SpriteRenderer>().sprite = Element.elementSprite;
-    }
-    public virtual void Use() 
-    {
-        Debug.Log(Element.ToString());
-    }
-    public virtual void ChronoUse(Vector2 pos) 
-    {
-        Debug.Log("ChronoUse: " + Element.ToString());
+        public ElemScriptable Element;
+        public BaseChar flag;
+        GameObject _flagInstance;
+        [SerializeField] protected Tile _spellTile;
+        [SerializeField] PhotonView SpellView;
+        public virtual void Use()
+        {
+            //if (!PlayerNController.Instance.PlayerView.IsMine) return;
+            SpellView.RPC("RPC_OccupieTile", RpcTarget.AllViaServer, ChargedElement.Instance.LastTileID);
+        }
+        public virtual void ChronoUse(int tileID)
+        {
+            if (!PlayerNController.Instance.PlayerView.IsMine) return;
+            SpellView.RPC("RPC_UnoOccupieTile", RpcTarget.AllViaServer, tileID);
+            Destroy(_flagInstance);
+
+        }
+
+        protected virtual void RPC_OccupieTile(int tileID)
+        {
+            ChronoManager.Instance.spellHistoryManager.Add(new ChronoManager.SpellHistoryManager(tileID, this));
+            Grid.Instance.Tiles[tileID].OccupiedUnit = flag;
+            _flagInstance = PhotonNetwork.Instantiate("Photon/Flag/" + flag.gameObject.name, Grid.Instance.Tiles[tileID].transform.position, Quaternion.identity);
+        }
+
+        protected virtual void RPC_UnoOccupieTile(int tileID)
+        {
+            Grid.Instance.Tiles[tileID].OccupiedUnit = null;
+        }
     }
 }

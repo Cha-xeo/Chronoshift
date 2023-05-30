@@ -47,6 +47,11 @@ MonoBehaviour:
   - RPC_AskForSpawn
   - RPC_SetCam
   - RPC_SetWorld
+  - RPC_SendReady
+  - RPC_OccupieTile
+  - RPC_UnoOccupieTile
+  - StartRound
+  - RPC_ChangeState
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

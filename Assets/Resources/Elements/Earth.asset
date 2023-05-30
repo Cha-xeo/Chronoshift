@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5dc4ca245f1c374aa0e3ce462a8d8aa, type: 3}
   m_Name: Earth
   m_EditorClassIdentifier: 
-  Elements: 0
-  elementName: Stone
+  Elements: 1
+  elementName: Earth
   elementDescription: 'number of use: 1     role: create an obstacle breakable: yes  
     duration: 3 rounds '
   elementSprite: {fileID: 21300000, guid: 6e4f59b591a26b64cb7a927558a0648a, type: 3}

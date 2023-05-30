@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f3577e09267c7a429206dca73645b55, type: 3}
+  m_Name: UltWind
+  m_EditorClassIdentifier: 
+  elements: 5
+  _name: UltWind
+  _description: 
+  _icon: {fileID: 21300000, guid: adc639974b88f2d418023bc6cc8fb630, type: 3}
+  elem: {fileID: 11400000, guid: efb3cfb1e554f8b4ca3e8583c941d33f, type: 2}
+  Spell: {fileID: 8474228538100269691, guid: 5df45252738c1bc4896974abefb11d24, type: 3}

@@ -13,10 +13,17 @@ namespace Chronoshift.AplicationController
         QuitApplication
     }
 
+    public enum StartMode
+    {
+        None,
+        Menu,
+        Game
+    }
     public class AplicationController : MonoBehaviour
     {
         public static AplicationController Instance { get; private set; }
         public bool gameIsPaused;
+        [SerializeField] StartMode _start;
 
         void Awake()
         {
@@ -39,7 +46,19 @@ namespace Chronoshift.AplicationController
             Application.wantsToQuit += OnWantToQuit;
             DontDestroyOnLoad(gameObject);
             Application.targetFrameRate = 120;
-            
+
+            switch (_start)
+            {
+                case StartMode.Menu:
+                    SceneManager.LoadScene(Constants.TAG_MENUSCENE);
+                    break;
+                case StartMode.Game:
+                    SceneManager.LoadScene(Constants.TAG_GAMESCENE);
+                    break;
+                case StartMode.None:
+                    break;
+            }
+
         }
 
 

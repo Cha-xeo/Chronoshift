@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ultFire : Spells
+namespace Chronoshift.Spells
 {
+    public class ultFire : Spells
+    {
 
+    }
 }

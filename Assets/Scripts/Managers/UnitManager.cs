@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Chronoshift.Tiles;
 
 public class UnitManager : MonoBehaviour
 {
@@ -35,9 +36,10 @@ public class UnitManager : MonoBehaviour
 
     public void SpawnUnitAt(BaseChar charr, Vector2 pos) 
     {
-            BaseChar spawnedChar = Instantiate(charr);
-            Tile tile = GridManager.Instance.GetTileAtPos(pos);
-            tile.SetUnit(spawnedChar);
+        BaseChar spawnedChar = Instantiate(charr);
+        Tile tile = GridManager.Instance.GetTileAtPos(pos);
+        spawnedChar.GetComponent<SpriteRenderer>().sortingOrder = tile.layer;
+        tile.SetUnit(spawnedChar);
     }
 
     public void SpawnEnemies() {

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5dc4ca245f1c374aa0e3ce462a8d8aa, type: 3}
   m_Name: Water
   m_EditorClassIdentifier: 
-  Elements: 3
+  Elements: 4
   elementName: Water
   elementDescription: 'number of use: 1     role: create a slow area breakable: no  
     duration: 2 rounds'

@@ -1,27 +1,50 @@
-using System.Collections;
-using System.Collections.Generic;
+using Chronoshift.Spells;
+using Grid = Chronoshift.Tiles.Grid;
+using Photon.Pun;
 using UnityEngine;
 
-public class Plant1 : Spells
+namespace Chronoshift.Spells
 {
-    // plant
-    [SerializeField]
-    BaseChar _unit;
-
-    public override void Use()
+    public class Plant1 : Spells
     {
-        base.Use();
-        //GridManager.Instance.ChangeTileAt(ChargedElement.Instance.lastPos, _obstacleDefault);
-        //GridManager.Instance.GetTileAtPos(ChargedElement.Instance.lastPos).SetUnit(flag);
-        UnitManager.Instance.SpawnUnitAt(flag, ChargedElement.Instance.lastPos);
-        ChronoManager.Instance.spellHistoryManager.Add(new ChronoManager.SpellHistoryManager(ChargedElement.Instance.lastPos, this));
+        // plant
+        public int maxTurn = 3;
+        public int turn = 0;
+        [SerializeField]
+        BaseChar _unit;
 
-    }
-    public override void ChronoUse(Vector2 pos)
-    {
-        base.Use();
-        UnitManager.Instance.SpawnUnitAt(_unit, ChargedElement.Instance.lastPos);
-       // GridManager.Instance.GetTileAtPos(ChargedElement.Instance.lastPos).SetUnit(_unit);
+        public override void Use()
+        {
+            base.Use();
+            //GridManager.Instance.ChangeTileAt(ChargedElement.Instance.lastPos, _obstacleDefault);
+            //GridManager.Instance.GetTileAtPos(ChargedElement.Instance.lastPos).SetUnit(flag);
+            //UnitManager.Instance.SpawnUnitAt(flag, ChargedElement.Instance.lastPos);
+            //ChronoManager.Instance.spellHistoryManager.Add(new ChronoManager.SpellHistoryManager(ChargedElement.Instance.lastPos, this));
 
+        }
+        public override void ChronoUse(int tileID)
+        {
+            base.Use();
+            SpellsNetwork.Instance.PlantList.Add(PhotonNetwork.Instantiate("Photon/Plant", Grid.Instance.Tiles[tileID].transform.position, Quaternion.identity));
+            //UnitManager.Instance.SpawnUnitAt(_unit, pos);
+            // GridManager.Instance.GetTileAtPos(ChargedElement.Instance.lastPos).SetUnit(_unit);
+        }
+
+        public bool Turn()
+        {
+            turn++;
+            return turn >= maxTurn;
+        }
+
+        [PunRPC]
+        protected override void RPC_OccupieTile(int tileID)
+        {
+            base.RPC_OccupieTile(tileID);
+        }
+        [PunRPC]
+        protected override void RPC_UnoOccupieTile(int tileID)
+        {
+            base.RPC_UnoOccupieTile(tileID);
+        }
     }
 }

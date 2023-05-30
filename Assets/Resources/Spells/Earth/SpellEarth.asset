@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f3577e09267c7a429206dca73645b55, type: 3}
+  m_Name: SpellEarth
+  m_EditorClassIdentifier: 
+  _name: SpellEarth
+  _description: 
+  _icon: {fileID: 21300000, guid: 58492fa1904a16846ae8fea5fbaa4671, type: 3}
+  elem: {fileID: 11400000, guid: 309f91436a72fa2479e0334ec76157ea, type: 2}
+  Spell: {fileID: 9168967156652492144, guid: f0f46f403d11a22478e7be62f771dd62, type: 3}

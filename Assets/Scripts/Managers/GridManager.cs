@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Chronoshift.Tiles;
 
 public class GridManager : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class GridManager : MonoBehaviour
     private float _driftX = 0.759f;
     private float _driftY = 0.571f;
     private float _originY = 0;
+    int orderlayer;
 
     void Awake() {
         // GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
@@ -49,8 +51,9 @@ public class GridManager : MonoBehaviour
 
         // GameManager.Instance.ChangeState(GameState.SpawnChar);
         //-----------------------------------------Code Grille 2d Cubes ^ --------------------------------------------------------------
+        orderlayer = _height;
         _tiles = new Dictionary<Vector2, Tile>();
-            for (float y = 0; (y) < _height; y += 1, odd = !odd)
+            for (float y = 0; (y) < _height; y += 1, odd = !odd, orderlayer--)
             {
                 for (float x = y; (x) < _width+y; x+= 1)
                 {
@@ -60,8 +63,10 @@ public class GridManager : MonoBehaviour
                         , (y*(_driftY*scaled)
                         )), Quaternion.identity);
                     randomTile.name = $"Tile {x};{y}";
-                    randomTile.GetComponent<Tile>().ntmx = x;
-                    randomTile.GetComponent<Tile>().ntmy = y;
+                    //randomTile.GetComponent<Tile>().SetPos(x, y);
+                    randomTile.GetComponent<Tile>().layer = orderlayer;
+                    randomTile.GetComponent<SpriteRenderer>().sortingOrder = orderlayer;
+                    randomTile.GetComponent<Tile>()._highlight.GetComponent<SpriteRenderer>().sortingOrder = orderlayer+1;
                     randomTile.transform.parent = _world;
                     // randomTile.Init(x,y);
 
@@ -97,11 +102,15 @@ public class GridManager : MonoBehaviour
     {
         Tile tilev = Instantiate(tile, _tiles[pos].transform.position, Quaternion.identity);
         // TODO Don't destroy cache it to restore it later
+
+        tilev.GetComponent<SpriteRenderer>().sortingOrder = _tiles[pos].layer;
+        tilev.GetComponent<Tile>()._highlight.GetComponent<SpriteRenderer>().sortingOrder = _tiles[pos].layer + 1;
+
         Destroy(_tiles[pos].gameObject);
 
         tilev.name = $"Tile {pos.x};{pos.y}";
-        tilev.GetComponent<Tile>().ntmx = pos.x;
-        tilev.GetComponent<Tile>().ntmy = pos.y;
+        //tilev.GetComponent<Tile>().posX = pos.x;
+        //tilev.GetComponent<Tile>().posY = pos.y;
         tilev.transform.parent = _world;
         _tiles[pos] = tilev;
 

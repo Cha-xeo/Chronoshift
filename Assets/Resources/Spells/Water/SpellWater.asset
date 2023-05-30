@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f3577e09267c7a429206dca73645b55, type: 3}
+  m_Name: SpellWater
+  m_EditorClassIdentifier: 
+  elements: 4
+  _name: SpellWater
+  _description: 
+  _icon: {fileID: 21300000, guid: 1c5871c1af04cce46a0fb7ec89cad579, type: 3}
+  elem: {fileID: 11400000, guid: 88b0c7f7b1dcf7b4cad85d4b156170c1, type: 2}
+  Spell: {fileID: 5247710315050854528, guid: 9b0db37cab537f145a3b8daab2552537, type: 3}

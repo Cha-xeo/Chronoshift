@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f3577e09267c7a429206dca73645b55, type: 3}
+  m_Name: UltWater
+  m_EditorClassIdentifier: 
+  elements: 4
+  _name: UltWater
+  _description: 
+  _icon: {fileID: 21300000, guid: 122b954bdbd3cfa4db25e56d6fbc5ffb, type: 3}
+  elem: {fileID: 11400000, guid: 88b0c7f7b1dcf7b4cad85d4b156170c1, type: 2}
+  Spell: {fileID: 8474228538100269691, guid: bb9ca3569f32e9940ad5a2520cc0d372, type: 3}

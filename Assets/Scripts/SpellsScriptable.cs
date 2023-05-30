@@ -6,7 +6,7 @@ using UnityEngine;
 public class SpellsScriptable : ScriptableObject
 {
     
-    public Constants.Elements elements;
+    //public Constants.Elements elements;
     public string _name;
     public string _description;
     public Sprite _icon;
