@@ -129,7 +129,7 @@ namespace Chronoshift.Tiles
                     PhotonNetwork.Destroy(ChargedElement.Instance.HoldingSpell);
                     break;
             }
-            ChronoNManager.Instance._view.RPC("RPC_AddToChronoshift", RpcTarget.AllViaServer);
+            ChronoNManager.Instance._view.RPC("RPC_AddToChronoshift", RpcTarget.AllViaServer, TileId, PlayerNController.Instance.mode);
             PlayerNController.Instance.mana--;
             PlayerNController.Instance.mode = Mode.Move;
         }

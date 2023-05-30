@@ -3,7 +3,7 @@ using UnityEngine;
 using Chronoshift.Tiles;
 using Grid = Chronoshift.Tiles.Grid;
 using Photon.Pun;
-
+using Chronoshift.Managers;
 
 namespace Chronoshift.Spells
 {
@@ -29,7 +29,8 @@ namespace Chronoshift.Spells
 
         protected virtual void RPC_OccupieTile(int tileID)
         {
-            ChronoManager.Instance.spellHistoryManager.Add(new ChronoManager.SpellHistoryManager(tileID, this));
+            //ChronoNManager.Instance.
+            //ChronoManager.Instance.spellHistoryManager.Add(new ChronoManager.SpellHistoryManager(tileID, this));
             Grid.Instance.Tiles[tileID].OccupiedUnit = flag;
             _flagInstance = PhotonNetwork.Instantiate("Photon/Flag/" + flag.gameObject.name, Grid.Instance.Tiles[tileID].transform.position, Quaternion.identity);
         }
