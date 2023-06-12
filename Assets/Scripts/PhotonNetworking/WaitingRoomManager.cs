@@ -61,7 +61,6 @@ namespace Chronoshift.PhotonNetworking
 
         private void StartGame()
         {
-            Debug.Log(PhotonNetwork.AutomaticallySyncScene);
             PhotonNetwork.AutomaticallySyncScene = true;
             _startingGame = true;
             if (!PhotonNetwork.IsMasterClient)

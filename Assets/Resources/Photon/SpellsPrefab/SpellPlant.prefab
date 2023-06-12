@@ -78,8 +78,7 @@ MonoBehaviour:
   flag: {fileID: -7041947121001114273, guid: 1da4de7c85b70ae49b11e38773365aa9, type: 3}
   _spellTile: {fileID: 0}
   SpellView: {fileID: 8381349417709139181}
-  maxTurn: 3
-  turn: 0
+  MaxTurn: 3
   _unit: {fileID: 5893080309783180052, guid: e0eb534384d00df40894c2f38ec04bf3, type: 3}
 --- !u!114 &8381349417709139181 stripped
 MonoBehaviour:

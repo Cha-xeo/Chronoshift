@@ -90,5 +90,4 @@ MonoBehaviour:
   _spellTile: {fileID: 0}
   SpellView: {fileID: 2285932144219906889}
   _torchePrefab: {fileID: 5778672594459042376, guid: 8a6b7ccbd22f07d418fee83c80dae214, type: 3}
-  maxTurn: 3
-  turn: 0
+  MaxTurn: 3

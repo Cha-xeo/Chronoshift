@@ -116,20 +116,25 @@ namespace Chronoshift.Tiles
         {
             if (!PlayerNController.Instance.PlayerView.IsMine) return;
 
-            Debug.Log("playing: " + PlayerNController.Instance.IsPlaying + " mode: " + PlayerNController.Instance.mode +" state: " + GameManagerN.Instance._state + " range: " + InRange);
-            if (!PlayerNController.Instance.IsPlaying || PlayerNController.Instance.mode == Mode.Blocked || GameManagerN.Instance._state == GameStateN.GenerateGrid || GameManagerN.Instance._state == GameStateN.Chronoshift || !InRange ) return;//|| !ChargedElement.Instance.canCast
+            if (!PlayerNController.Instance.IsPlaying || PlayerNController.Instance.mode == Mode.Blocked || GameManagerN.Instance._state == GameStateN.GenerateGrid || GameManagerN.Instance._state == GameStateN.Chronoshift || !InRange || !ChargedElement.Instance.canCast) return;//|| !ChargedElement.Instance.canCast
 
             switch (PlayerNController.Instance.mode)
             {
                 case Mode.Move:
                     PlayerNController.Instance.MovePlayer(TileId);
+                    /// Test local chronoshift
+                    ChronoNManager.Instance.AddToChronoshiftLocal(TileId, null);
+                    /// ChronoNManager.Instance._view.RPC("RPC_AddToChronoshift", RpcTarget.AllViaServer, TileId, "", PlayerNController.Instance.PlayerScript.ID);
                     break;
                 case Mode.Casting:
+                    /// Test local chronoshift
                     ChargedElement.Instance.HoldingSpell.GetComponent<Chronoshift.Spells.Spells>().Use();
-                    PhotonNetwork.Destroy(ChargedElement.Instance.HoldingSpell);
+                    ChronoNManager.Instance.AddToChronoshiftLocal(TileId, ChargedElement.Instance.HoldingSpell.GetComponent<Chronoshift.Spells.Spells>());
+                    /// int indexOfParenthesis = ChargedElement.Instance.HoldingSpell.name.IndexOf("(");
+                    /// ChronoNManager.Instance._view.RPC("RPC_AddToChronoshift", RpcTarget.AllViaServer, TileId, ChargedElement.Instance.HoldingSpell.name.Substring(0, indexOfParenthesis), PlayerNController.Instance.PlayerScript.ID);
+                    ///PhotonNetwork.Destroy(ChargedElement.Instance.HoldingSpell);
                     break;
             }
-            ChronoNManager.Instance._view.RPC("RPC_AddToChronoshift", RpcTarget.AllViaServer, TileId, PlayerNController.Instance.mode);
             PlayerNController.Instance.mana--;
             PlayerNController.Instance.mode = Mode.Move;
         }

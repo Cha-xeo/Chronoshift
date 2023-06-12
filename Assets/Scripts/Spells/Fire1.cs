@@ -11,8 +11,8 @@ namespace Chronoshift.Spells
     {
         [SerializeField] GameObject _torchePrefab;
         Light2D Torch;
-        public int maxTurn = 3;
-        public int turn = 0;
+        public int MaxTurn = 3;
+        //public int turn = 0;
         // 
         public override void Use()
         {
@@ -28,24 +28,7 @@ namespace Chronoshift.Spells
         {
             base.ChronoUse(tileID);
             //_torchInstance = Instantiate(this, pos, Quaternion.identity);
-            SpellsNetwork.Instance.TorchList.Add(Instantiate(_torchePrefab, Grid.Instance.Tiles[tileID].transform.position, Quaternion.identity));
-        }
-
-        public bool Turn()
-        {
-            turn++;
-            return turn >= maxTurn;
-        }
-
-        [PunRPC]
-        protected override void RPC_OccupieTile(int tileID)
-        {
-            base.RPC_OccupieTile(tileID);
-        }
-        [PunRPC]
-        protected override void RPC_UnoOccupieTile(int tileID)
-        {
-            base.RPC_UnoOccupieTile(tileID);
+            SpellsNetwork.Instance.TorchList.Add(new SpellData(Instantiate(_torchePrefab, Grid.Instance.Tiles[tileID].transform.position, Quaternion.identity), MaxTurn));
         }
     }
 }

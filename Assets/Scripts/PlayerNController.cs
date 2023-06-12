@@ -31,6 +31,7 @@ namespace Chronoshift.PlayerController
 
         [SerializeField] Transform playerParent;
         GameObject _playerInstance;
+        public Character1 PlayerScript;
 
         [SerializeField] GameObject GlobalLight;
         [SerializeField] Light2D Light;
@@ -74,18 +75,23 @@ namespace Chronoshift.PlayerController
         {
             if (!PhotonNetwork.IsMasterClient)
             {
-                Debug.Log("Player 2");
                 Light.shapePath[0] = new Vector3(18, -1);
                 Light.shapePath[1] = new Vector3(23, 8);
                 Light.shapePath[2] = new Vector3(10, 8.3f);
                 currentTile = Grid.Instance.Tiles.Last().Key;
                 _playerInstance = PhotonNetwork.Instantiate("Photon/Player", Grid.Instance.Tiles.Last().Value.transform.position, Quaternion.identity);
+                _playerInstance.name = "P2";
+                PlayerScript = _playerInstance.GetComponent<Character1>();
+                PlayerScript.ID = 2;
+
             }
             else
             {
-                Debug.Log("Player 1");
                 currentTile = Grid.Instance.Tiles.First().Key;
                 _playerInstance = PhotonNetwork.Instantiate("Photon/Player", Grid.Instance.Tiles.First().Value.transform.position, Quaternion.identity);
+                _playerInstance.name = "P1";
+                PlayerScript = _playerInstance.GetComponent<Character1>();
+                PlayerScript.ID = 1;
             }
             PlayerView = _playerInstance.GetComponent<PhotonView>();
             mode = Mode.Blocked;
@@ -166,6 +172,7 @@ namespace Chronoshift.PlayerController
 
         public void MovePlayer(int tileID)
         {
+            if (!PlayerView.IsMine) return;
             currentTile = tileID;
             _playerInstance.transform.position = Grid.Instance.Tiles[tileID].transform.position;
         }

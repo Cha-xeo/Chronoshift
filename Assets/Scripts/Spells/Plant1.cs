@@ -8,8 +8,7 @@ namespace Chronoshift.Spells
     public class Plant1 : Spells
     {
         // plant
-        public int maxTurn = 3;
-        public int turn = 0;
+        public int MaxTurn = 3;
         [SerializeField]
         BaseChar _unit;
 
@@ -25,26 +24,9 @@ namespace Chronoshift.Spells
         public override void ChronoUse(int tileID)
         {
             base.Use();
-            SpellsNetwork.Instance.PlantList.Add(PhotonNetwork.Instantiate("Photon/Plant", Grid.Instance.Tiles[tileID].transform.position, Quaternion.identity));
+            SpellsNetwork.Instance.PlantList.Add(new SpellData(PhotonNetwork.Instantiate("Photon/Plant", Grid.Instance.Tiles[tileID].transform.position, Quaternion.identity), MaxTurn));
             //UnitManager.Instance.SpawnUnitAt(_unit, pos);
             // GridManager.Instance.GetTileAtPos(ChargedElement.Instance.lastPos).SetUnit(_unit);
-        }
-
-        public bool Turn()
-        {
-            turn++;
-            return turn >= maxTurn;
-        }
-
-        [PunRPC]
-        protected override void RPC_OccupieTile(int tileID)
-        {
-            base.RPC_OccupieTile(tileID);
-        }
-        [PunRPC]
-        protected override void RPC_UnoOccupieTile(int tileID)
-        {
-            base.RPC_UnoOccupieTile(tileID);
         }
     }
 }

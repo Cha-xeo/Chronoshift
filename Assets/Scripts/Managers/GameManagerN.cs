@@ -6,8 +6,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Rendering.FilterWindow;
-
+using Grid = Chronoshift.Tiles.Grid;
 namespace Chronoshift.Managers
 {
     public enum GameStateN
@@ -35,7 +34,6 @@ namespace Chronoshift.Managers
         public Constants.Elements StarterElement;
         public float Timer = 20f;
         public static event Action<GameState> OnGameStateChanged;
-
         private static GameManagerN instance;
 
         public static GameManagerN Instance
@@ -55,12 +53,24 @@ namespace Chronoshift.Managers
         {
             _image.fillAmount = 1;
             PlayerNController.Instance.IsPlaying = false;
-            ChangeState(_state+1);
+            switch (_state)
+            {
+                case GameStateN.Player1Turn:
+                    ChangeState(GameStateN.Player2Turn);
+                    break;
+                case GameStateN.Player2Turn:
+                    ChangeState(GameStateN.Chronoshift);
+                    break;
+                case GameStateN.Chronoshift:
+                    ChangeState(GameStateN.Player1Turn);
+                    break;
+            }
+
         }
 
         IEnumerator Countdown(float seconds)
         {
-            float duration = seconds;
+            /*float duration = seconds;
             float totalTime = 0f;
             while (duration > 0)
             {
@@ -68,7 +78,8 @@ namespace Chronoshift.Managers
                 duration -= Time.deltaTime;
                 yield return null;
             }
-            DoStuff();
+            DoStuff();*/
+                yield return null;
         }
 
         public void PunChangeState(GameStateN state)
@@ -145,8 +156,16 @@ namespace Chronoshift.Managers
             SpellButton.interactable = false;
             UltButton.interactable = false;
             PlayerNController.Instance.mode = Mode.Blocked;
-            Debug.Log("Rewind");
+            _image.fillAmount = 1;
+            ChronoNManager.Instance.StartChronoshitLocal();
+            //ChronoNManager.Instance.StartChronoShift();// _view.RPC("RPC_StartChronoShift", RpcTarget.AllViaServer);
             //ChronoManager.Instance.Rewind();
+        }
+
+        public void DecreaseTimer(float amount)
+        {
+            //TODO Decrease chrono bar each time a move is done
+            _image.fillAmount = amount;
         }
 
         public void OnReadyClick()
@@ -160,7 +179,6 @@ namespace Chronoshift.Managers
         void RPC_SendReady()
         {
             playerReady++;
-            Debug.Log(playerReady);
             if (playerReady == 2)
             {
                 _view.RPC("StartRound", RpcTarget.AllViaServer);
@@ -177,10 +195,7 @@ namespace Chronoshift.Managers
         [PunRPC]
         void RPC_ChangeState(GameStateN state)
         {
-            Debug.Log("Change state to " + state);
             ChangeState(state);
         }
-
-
     }
 }

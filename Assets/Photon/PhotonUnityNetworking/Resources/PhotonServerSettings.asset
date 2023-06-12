@@ -54,6 +54,8 @@ MonoBehaviour:
   - RPC_ChangeState
   - RPC_AddToChronoshift
   - RPC_ClearChronoshift
+  - RPC_StartChronoShift
+  - RPC_EndRewind
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

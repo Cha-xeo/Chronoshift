@@ -14,7 +14,7 @@ namespace Chronoshift.Tiles
     {
         private string propertiesKey = "Grid";
 
-        private Dictionary<int, Constants.Elements> propertiesValue = new();
+        private Dictionary<int, int> propertiesValue = new();
 
         public Dictionary<int, Tile> Tiles { get; private set; } = new();
 
@@ -59,12 +59,12 @@ namespace Chronoshift.Tiles
         public void SetTileLocal(int tileID, Constants.Elements tileElem)
         {
 
-            Tile tilev = Instantiate(GridGenerator.Instance.TilesDico[tileElem], Tiles[tileID].transform.position, Quaternion.identity);
-            tilev.Init(tileID, Tiles[tileID].layer);
-            Destroy(Tiles[tileID].gameObject);
-            Tiles[tileID] = tilev;
+            //Tile tilev = Instantiate(GridGenerator.Instance.TilesDico[tileElem], Tiles[tileID].transform.position, Quaternion.identity);
+            //tilev.Init(tileID, Tiles[tileID].layer);
+            //Destroy(Tiles[tileID].gameObject);
+            //Tiles[tileID] = tilev;
 
-            UpdateRoomProperties(tileID, tileElem);
+            UpdateRoomProperties(tileID, (int)tileElem);
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace Chronoshift.Tiles
         /// <summary>
         /// Gets called in order to update the Custom Room Properties with the modification made by the local client.
         /// </summary>
-        private void UpdateRoomProperties(int tileID, Constants.Elements Elements)
+        private void UpdateRoomProperties(int tileID, int Elements)
         {
             propertiesValue[tileID] = Elements;
 
@@ -110,12 +110,11 @@ namespace Chronoshift.Tiles
                     propertiesValue = new();
                     return;
                 }
+                propertiesValue = (Dictionary<int, int>)propertiesThatChanged[propertiesKey];
 
-                propertiesValue = (Dictionary<int, Constants.Elements>)propertiesThatChanged[propertiesKey];
-
-                foreach (KeyValuePair<int, Constants.Elements> pair in propertiesValue)
+                foreach (KeyValuePair<int, int> pair in propertiesValue)
                 {
-                    SetTileRemote(pair.Key, pair.Value);
+                    SetTileRemote(pair.Key, (Constants.Elements)pair.Value);
                 }
             }
         }

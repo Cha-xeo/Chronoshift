@@ -20,8 +20,9 @@ namespace Chronoshift
         public List<SpellsScriptable> SpellArray;
         [SerializeField] Transform _spellTransform;
         public GameObject HoldingSpell;
+        //public Spells.Spells HoldingSpell;
         //public bool holding;
-        public bool canCast;
+        public bool canCast = true;
         //public Vector2 lastPos;
         public int LastTileID;
 
@@ -39,10 +40,10 @@ namespace Chronoshift
             }
             else */if (PlayerNController.Instance.IsPlaying && PlayerNController.Instance.mode == Mode.Casting && InputManager.GetInstance().GetRightMousePressed())
             {
-                Debug.Log("Stop Casting");
                 PlayerNController.Instance.mode = Mode.Move;
                 //holding = false;
                 //_holdingSpell = null;
+                //HoldingSpell = null;
                 PhotonNetwork.Destroy(HoldingSpell);
             }
         }
@@ -50,6 +51,7 @@ namespace Chronoshift
         public void HoldSpell(int i)
         {
             PlayerNController.Instance.mode = Mode.Casting;
+            //HoldingSpell = SpellArray[i].Spell.GetComponent<Spells.Spells>();
             HoldingSpell = PhotonNetwork.Instantiate("Photon/SpellsPrefab/" + SpellArray[i]._name, _spellTransform.position, Quaternion.identity);
         }
     }
