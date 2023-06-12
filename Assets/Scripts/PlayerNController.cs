@@ -145,6 +145,7 @@ namespace Chronoshift.PlayerController
         {
             foreach (Tile tile in InRangeTile.Values)
             {
+                // if (tile._isWalkable != true) break;
                 tile._highlight.SetActive(true);
                 tile.InRange = true;
                 switch (mode)

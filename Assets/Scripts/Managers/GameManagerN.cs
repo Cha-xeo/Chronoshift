@@ -95,7 +95,6 @@ namespace Chronoshift.Managers
         public void ChangeState(GameStateN state)
         {
             _state = state;
-
             switch (_state)
             {
                 case GameStateN.SelectElement:

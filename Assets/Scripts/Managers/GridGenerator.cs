@@ -94,7 +94,8 @@ namespace Chronoshift.Managers
                         (x * _driftX) + _driftY) * scaled - _driftY * y
                         : ((x * _driftX) + _driftY) * scaled - _driftY * y
                         , y * (_driftY * scaled)), Quaternion.identity);
-                    randomTile.Init(_tileId, orderlayer);
+                    randomTile.Init(_tileId, orderlayer, _tileId%6 == 0 && _tileId != 0 && _tileId != _height*_width-1 ? false : true);
+                    // if (_tileId % 6 == 0 && _tileId != 0 && _tileId != _height*_width-1) {Grid.Instance.SetTileLocal(_tileId, Constants.Elements.Earth);}
                     Grid.Instance.AddTile(_tileId++, randomTile);
                 }
                 yield return new WaitForEndOfFrame();

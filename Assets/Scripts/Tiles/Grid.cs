@@ -74,7 +74,7 @@ namespace Chronoshift.Tiles
         public void SetTileRemote(int tileID, Constants.Elements tileElem)
         {
             Tile tilev = Instantiate(GridGenerator.Instance.TilesDico[tileElem], Tiles[tileID].transform.position, Quaternion.identity);
-            tilev.Init(tileID, Tiles[tileID].layer);
+            tilev.Init(tileID, Tiles[tileID].layer, Tiles[tileID]._isWalkable);
             Destroy(Tiles[tileID].gameObject);
             Tiles[tileID] = tilev;
         }
