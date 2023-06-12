@@ -7,18 +7,14 @@ namespace Chronoshift.Spells
 {
     public class Wind1 : Spells
     {
-        public override void Use()
+        public override void Use(int tileID)
         {
-            base.Use();
-            //GridManager.Instance.ChangeTileAt(ChargedElement.Instance.lastPos, _obstacleDefault);
-            //GridManager.Instance.GetTileAtPos(ChargedElement.Instance.lastPos).SetUnit(flag);
-            //UnitManager.Instance.SpawnUnitAt(flag, ChargedElement.Instance.lastPos);
-            // ChronoManager.Instance.spellHistoryManager.Add(new ChronoManager.SpellHistoryManager(ChargedElement.Instance.lastPos, this));
+            base.Use(tileID);
 
         }
         public override void ChronoUse(int tileID)
         {
-            base.Use();
+            base.ChronoUse(tileID);
             Grid.Instance.SetTileLocal(tileID, Element.Elements);
 
         }

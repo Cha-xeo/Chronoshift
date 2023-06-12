@@ -74,7 +74,6 @@ namespace Chronoshift.Managers
 
             Hashtable properties = new Hashtable
             {
-                //{SeedPropertiesKey, Seed},
                 {WorldHeightPropertiesKey, _height},
                 {WorldWidthPropertiesKey, _width},
             };
@@ -91,19 +90,16 @@ namespace Chronoshift.Managers
                 {
                     float noiseValue = Simplex.Noise.CalcPixel2D((int)x, (int)y, 0.02f);
 
-                    //Constants.Elements materialIndex = (Constants.Elements)(noiseValue / (int)(256.0f / _tiles.Count));
                     Tile randomTile = Instantiate(TilesDico[Constants.Elements.None], new Vector3(odd ? (
                         (x * _driftX) + _driftY) * scaled - _driftY * y
                         : ((x * _driftX) + _driftY) * scaled - _driftY * y
                         , y * (_driftY * scaled)), Quaternion.identity);
-                    //randomTile.GetComponent<PhotonView>().ow
                     randomTile.Init(_tileId, orderlayer);
                     Grid.Instance.AddTile(_tileId++, randomTile);
                 }
                 yield return new WaitForEndOfFrame();
             }
             int pos = Grid.Instance.Tiles.Count / 2 + _width / 2;
-            //Debug.Log(Grid.Instance.Tiles[pos].transform.position);
             Vector3 aled = new Vector3(Grid.Instance.Tiles[pos].transform.position.x, Grid.Instance.Tiles[pos].transform.position.y, -10);
             Camera.main.transform.position = aled;
             // Applying modifications made to the world when joining the room later or while it is created

@@ -6,13 +6,13 @@ namespace Chronoshift.Spells
 {
     public class Earth1 : Spells
     {
-        public override void Use()
+        public override void Use(int tileID)
         {
-            base.Use();
+            base.Use(tileID);
         }
         public override void ChronoUse(int tileID)
         {
-            base.Use();
+            base.ChronoUse(tileID);
             Grid.Instance.SetTileLocal(tileID, Element.Elements);
         }
     }

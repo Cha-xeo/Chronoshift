@@ -22,7 +22,8 @@ namespace Chronoshift.PlayerController
         Mode _mode;
         public bool IsPlaying = false;
         public int currentTile;
-        public float moveRange = 3;
+        //public float MaxMoveRange { get; private set; } = 4; 
+        //public float moveRange = 0;
         public float CastRange = 6;
         public Dictionary<int, Tile> InRangeTile = new();
         public LayerMask tileLayer;
@@ -96,6 +97,7 @@ namespace Chronoshift.PlayerController
             PlayerView = _playerInstance.GetComponent<PhotonView>();
             mode = Mode.Blocked;
             mana = manamax;
+            //moveRange = MaxMoveRange;
             
             GlobalLight.SetActive(true);
             Light.gameObject.SetActive(true);
@@ -120,7 +122,7 @@ namespace Chronoshift.PlayerController
                     ResetShowedTile();
                     break;
                 case Mode.Move:
-                    GetTileInRange(moveRange);
+                    GetTileInRange(mana);//moveRange);
                     ShowTileInRange();
                     break;
                 case Mode.Casting:

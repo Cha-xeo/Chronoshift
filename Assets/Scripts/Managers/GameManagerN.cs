@@ -33,7 +33,6 @@ namespace Chronoshift.Managers
         int playerReady = 0;
         public Constants.Elements StarterElement;
         public float Timer = 20f;
-        public static event Action<GameState> OnGameStateChanged;
         private static GameManagerN instance;
 
         public static GameManagerN Instance
@@ -158,13 +157,10 @@ namespace Chronoshift.Managers
             PlayerNController.Instance.mode = Mode.Blocked;
             _image.fillAmount = 1;
             ChronoNManager.Instance.StartChronoshitLocal();
-            //ChronoNManager.Instance.StartChronoShift();// _view.RPC("RPC_StartChronoShift", RpcTarget.AllViaServer);
-            //ChronoManager.Instance.Rewind();
         }
 
         public void DecreaseTimer(float amount)
         {
-            //TODO Decrease chrono bar each time a move is done
             _image.fillAmount = amount;
         }
 

@@ -111,13 +111,23 @@ namespace Chronoshift.Spells
 
         public void OccupieTile(int tileID, Constants.Elements elem)
         {
+            Debug.Log("Tile added: " + tileID);
             FlagList.Add(new TileData(PhotonNetwork.Instantiate("Photon/Flag/" + _flagArray[(int)elem].gameObject.name, Grid.Instance.Tiles[tileID].transform.position, Quaternion.identity), tileID));
-            _view.RPC("RPC_OccupieTile", RpcTarget.AllViaServer, ChargedElement.Instance.LastTileID, elem);
+            foreach (var item in FlagList)
+            {
+                Debug.Log("FlagList: " + item.TileId);
+            }
+            _view.RPC("RPC_OccupieTile", RpcTarget.AllViaServer, tileID, elem);
         }
-
+        [PunRPC]
+        void RPC_OccupieTile(int tileID, Constants.Elements elem)
+        {
+            Grid.Instance.Tiles[tileID].OccupiedUnit = _flagArray[(int)elem];
+        }
         public void UnoOccupieTile(int tileID)
         {
             //length = FlagList.Count;
+            Debug.Log("Aled: " + FlagList.Last().obj.name);
             PhotonNetwork.Destroy(FlagList.Last().obj);
             FlagList.Remove(FlagList.Last());
             /*for (int i = 0; i < length; i++)
@@ -132,13 +142,7 @@ namespace Chronoshift.Spells
             _view.RPC("RPC_UnoOccupieTile", RpcTarget.AllViaServer, tileID);
         }
 
-        [PunRPC]
-        void RPC_OccupieTile(int tileID, Constants.Elements elem)
-        {
-            //ChronoNManager.Instance.
-            //ChronoManager.Instance.spellHistoryManager.Add(new ChronoManager.SpellHistoryManager(tileID, this));
-            Grid.Instance.Tiles[tileID].OccupiedUnit = _flagArray[(int)elem];
-        }
+
 
         [PunRPC]
         void RPC_UnoOccupieTile(int tileID)

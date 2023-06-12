@@ -11,7 +11,6 @@ namespace Chronoshift.Tiles
         [SerializeField] protected SpriteRenderer _renderer;
         public Color NColor, CColor, MColor;
         public GameObject _highlight;
-        //[SerializeField] PhotonView _view;
         [SerializeField] private bool _isWalkable;
         private int mpsBefore;
         public int layer;
@@ -59,59 +58,6 @@ namespace Chronoshift.Tiles
             }
         }
 
-        /*void OnMouseDown()
-        {
-            if (GameManager.Instance._state != GameState.CharTurn && GameManager.Instance._state != GameState.EnemyTurn)
-                return;
-            if (OccupiedUnit != null)
-            {
-                if (OccupiedUnit.Faction == Faction.Character)
-                {
-                    UnitManager.Instance.SetSelectedChar((BaseChar)OccupiedUnit);
-                }
-                else if (OccupiedUnit.Faction == Faction.Enemy)
-                {
-                    UnitManager.Instance.SetSelectedEnemy((BaseEnemy)OccupiedUnit);
-                }
-                else
-                {
-                    if (UnitManager.Instance.SelectedChar != null || UnitManager.Instance.SelectedEnemy != null)
-                    {
-                        return;
-                    }
-                }
-            }
-            else
-            {
-                if (ChargedElement.Instance.holding) return;
-                if (UnitManager.Instance.SelectedChar != null)
-                {
-                    Debug.Log("Ally selected.");
-                    SetUnit(UnitManager.Instance.SelectedChar);
-                    UnitManager.Instance.SelectedChar.MPs -= 1;
-                    if (UnitManager.Instance.SelectedChar.MPs <= 0)
-                    {
-                        UnitManager.Instance.SelectedChar.MPs = 4; // PAS FLEXIBLE
-                        ChronoManager.Instance.Chronoshift(UnitManager.Instance.SelectedChar.transform.position, UnitManager.Instance.SelectedChar);
-                        UnitManager.Instance.SetSelectedChar(null);
-                        GameManager.Instance.ChangeState(GameState.Chronoshift);
-                    }
-                }
-                if (UnitManager.Instance.SelectedEnemy != null)
-                {
-                    Debug.Log("Enemy selected.");
-                    SetUnit(UnitManager.Instance.SelectedEnemy);
-                    UnitManager.Instance.SelectedEnemy.MPs -= 1;
-                    if (UnitManager.Instance.SelectedEnemy.MPs <= 0)
-                    {
-                        UnitManager.Instance.SelectedEnemy.MPs = 4; // PAS FLEXIBLE
-                        ChronoManager.Instance.Chronoshift(UnitManager.Instance.SelectedEnemy.transform.position, UnitManager.Instance.SelectedEnemy);
-                        UnitManager.Instance.SetSelectedEnemy(null);
-                        GameManager.Instance.ChangeState(GameState.Chronoshift);
-                    }
-                }
-            }
-        }*/
         void OnMouseDown()
         {
             if (!PlayerNController.Instance.PlayerView.IsMine) return;
@@ -122,24 +68,20 @@ namespace Chronoshift.Tiles
             {
                 case Mode.Move:
                     PlayerNController.Instance.MovePlayer(TileId);
-                    /// Test local chronoshift
                     ChronoNManager.Instance.AddToChronoshiftLocal(TileId, null);
-                    /// ChronoNManager.Instance._view.RPC("RPC_AddToChronoshift", RpcTarget.AllViaServer, TileId, "", PlayerNController.Instance.PlayerScript.ID);
                     break;
                 case Mode.Casting:
-                    /// Test local chronoshift
-                    ChargedElement.Instance.HoldingSpell.GetComponent<Chronoshift.Spells.Spells>().Use();
+                    ChargedElement.Instance.HoldingSpell.GetComponent<Chronoshift.Spells.Spells>().Use(TileId);
                     ChronoNManager.Instance.AddToChronoshiftLocal(TileId, ChargedElement.Instance.HoldingSpell.GetComponent<Chronoshift.Spells.Spells>());
-                    /// int indexOfParenthesis = ChargedElement.Instance.HoldingSpell.name.IndexOf("(");
-                    /// ChronoNManager.Instance._view.RPC("RPC_AddToChronoshift", RpcTarget.AllViaServer, TileId, ChargedElement.Instance.HoldingSpell.name.Substring(0, indexOfParenthesis), PlayerNController.Instance.PlayerScript.ID);
-                    ///PhotonNetwork.Destroy(ChargedElement.Instance.HoldingSpell);
+
                     break;
             }
             PlayerNController.Instance.mana--;
+            GameManagerN.Instance.DecreaseTimer((float)PlayerNController.Instance.mana / (float)PlayerNController.Instance.manamax);
             PlayerNController.Instance.mode = Mode.Move;
         }
 
-        public void SetUnit(BaseUnit unit)
+       /* public void SetUnit(BaseUnit unit)
         {
             if (unit.OccupiedTile != null)
                 unit.OccupiedTile.OccupiedUnit = null;
@@ -147,7 +89,7 @@ namespace Chronoshift.Tiles
             unit.transform.position = transform.position;
             OccupiedUnit = unit;
             unit.OccupiedTile = this;
-        }
+        }*/
 
         public void RevealTile()
         {
